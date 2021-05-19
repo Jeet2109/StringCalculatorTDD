@@ -42,4 +42,9 @@ public class StringCalculatorTest {
 	public void newCustomDelimiter() {
 		assertEquals(6,calculator.add("//;\n1;2;3"));
 	}
+	
+	@Test
+	public void negativeInput() {
+		assertEquals(0,calculator.add("-1,-2,3"));
+	}
 }
