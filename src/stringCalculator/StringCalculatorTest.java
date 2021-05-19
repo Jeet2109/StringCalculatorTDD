@@ -52,4 +52,10 @@ public class StringCalculatorTest {
 	public void numberGreaterThan1000() {
 		assertEquals(6,calculator.add("1,2,3,1001"));
 	}
+	
+	@Test
+	public void delimiterOfAnyLength() {
+		assertEquals(6,calculator.add("//[***]\n1***2***3"));
+	}
+	
 }

@@ -1,7 +1,30 @@
 package stringCalculator;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class StringCalculator {
 
+	Set<Character> characters;
+	
+	StringCalculator(){
+		this.characters = new HashSet<>();
+		this.characters.add('(');
+        this.characters.add(')');
+        this.characters.add('[');
+        this.characters.add(']');
+        this.characters.add('{');
+        this.characters.add('}');
+		this.characters.add('+');
+		this.characters.add('.');
+        this.characters.add('*');
+        this.characters.add('?');
+        this.characters.add('^');
+        this.characters.add('$');
+        this.characters.add('\\');
+	}
+	
+	
 	/**
 	 * This method adds the given numbers and returns the result. 
 	 * If no number is passed, then it returns 0 
@@ -22,10 +45,17 @@ public class StringCalculator {
 		// check for custom delimiter
 		else if (numbers.startsWith("//")) {
 
-			String newDlmtr = numbers.substring(2, 3);
-			String[] nums = numbers.substring(4).split(newDlmtr);
+			String delimiter = "";
+			if(numbers.contains("[")) {
+				delimiter = getDelimiters(numbers);
+				numbers = numbers.substring(numbers.lastIndexOf("]")+2);
+			} else {
+				delimiter = numbers.substring(2,3);
+				numbers = numbers.substring(4);
+			}
+			
 			try {
-				sum = getSum(nums);
+				sum = getSum(numbers,delimiter);
 			} catch (NegativesNotAllowed e) {
 				e.printStackTrace();
 			}
@@ -33,12 +63,9 @@ public class StringCalculator {
 
 		// check for , and new line delimiter
 		else if (numbers.contains(",")) {
-
-			// split the input into individual numbers
-			String[] numArray = numbers.split(",|\n");
-			
+			String delimiter = ",|\n";
 			try {
-				sum = getSum(numArray);
+				sum = getSum(numbers,delimiter);
 			} catch (NegativesNotAllowed e) {
 				e.printStackTrace();
 			}
@@ -63,6 +90,29 @@ public class StringCalculator {
 		return Integer.parseInt(number);
 	}
 	
+	private String getDelimiters(String numbers) {
+		StringBuilder sb = new StringBuilder();
+		String[] delimiters = numbers.substring(3,numbers.lastIndexOf("]")).split("\\]\\[");
+		if(delimiters.length>0) {
+			for(String s : delimiters) {
+				sb.append(s+"|");
+			}
+			sb.delete(sb.length()-1,sb.length());
+		}
+		
+		String tempDelimiter = sb.toString();
+		StringBuilder finalDelimiters = new StringBuilder();
+		for(char c : tempDelimiter.toCharArray()) {
+			if(this.characters.contains(c)) {
+				finalDelimiters.append("\\"+c);
+			} else {
+				finalDelimiters.append(""+c);
+			}
+		}
+		
+		return finalDelimiters.toString();
+	}
+	
 	
 	/**
 	 * This function calculates the sum of given numbers
@@ -70,8 +120,9 @@ public class StringCalculator {
 	 * @return - sum of numbers
 	 * @throws NegativesNotAllowed
 	 */
-	private int getSum(String[] numbers) throws NegativesNotAllowed {
+	private int getSum(String input, String delimiter) throws NegativesNotAllowed {
 		int sum = 0;
+		String[] numbers = input.split(delimiter);
 		StringBuilder exceptionMsg = new StringBuilder();
 		
 		for(String str : numbers) {
