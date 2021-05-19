@@ -12,8 +12,11 @@ public class StringCalculator {
 	 */
 	public int add(String numbers) {
 		
+		// creating regex for delimiters
+		String delimiters = ",|\n";
+		
 		// split the input into individual numbers 
-		String[] numArray = numbers.split(",");
+		String[] numArray = numbers.split(delimiters);
 		int sum = 0;
 		
 		// check for blank string i.e. no numbers passed

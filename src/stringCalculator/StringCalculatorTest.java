@@ -32,5 +32,10 @@ public class StringCalculatorTest {
 	public void multipleInput() {
 		assertEquals(9,calculator.add("1,3,5"));
 	}
+	
+	@Test
+	public void newLineDelimiter() {
+		assertEquals(9,calculator.add("1\n3,5"));
+	}
 
 }
