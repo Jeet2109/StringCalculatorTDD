@@ -15,7 +15,7 @@ public class StringCalculator {
         this.characters.add(']');
         this.characters.add('{');
         this.characters.add('}');
-		this.characters.add('+');
+        this.characters.add('+');
 		this.characters.add('.');
         this.characters.add('*');
         this.characters.add('?');
