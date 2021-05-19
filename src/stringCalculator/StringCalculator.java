@@ -79,6 +79,10 @@ public class StringCalculator {
 			if(number<0) {
 				exceptionMsg.append(String.valueOf(number)+" ");
 			}
+			
+			if(number>1000) {
+				continue;
+			}
 			sum+=number;
 		}
 		

@@ -47,4 +47,9 @@ public class StringCalculatorTest {
 	public void negativeInput() {
 		assertEquals(0,calculator.add("-1,-2,3"));
 	}
+	
+	@Test
+	public void numberGreaterThan1000() {
+		assertEquals(6,calculator.add("1,2,3,1001"));
+	}
 }
