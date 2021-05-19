@@ -37,5 +37,9 @@ public class StringCalculatorTest {
 	public void newLineDelimiter() {
 		assertEquals(9,calculator.add("1\n3,5"));
 	}
-
+	
+	@Test
+	public void newCustomDelimiter() {
+		assertEquals(6,calculator.add("//;\n1;2;3"));
+	}
 }
