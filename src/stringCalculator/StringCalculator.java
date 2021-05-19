@@ -14,16 +14,20 @@ public class StringCalculator {
 		
 		// split the input into individual numbers 
 		String[] numArray = numbers.split(",");
+		int sum = 0;
 		
 		// check for blank string i.e. no numbers passed
 		if(numbers.isEmpty())
 			return 0;
 		
-		// check if only one number is passed
+		// check if only one or multiple numbers are passed
 		if(numArray.length==1) {
 			return convertToInteger(numbers);
 		} else {
-			return convertToInteger(numArray[0]) + convertToInteger(numArray[1]);
+			for(String str : numArray) {
+				sum += convertToInteger(str);
+			}
+			return sum;
 		}
 		
 	}

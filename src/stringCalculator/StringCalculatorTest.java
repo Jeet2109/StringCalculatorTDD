@@ -27,5 +27,10 @@ public class StringCalculatorTest {
 	public void twoNumbersInput() {
 		assertEquals(3, calculator.add("1,2"));
 	}
+	
+	@Test
+	public void multipleInput() {
+		assertEquals(9,calculator.add("1,3,5"));
+	}
 
 }
