@@ -90,6 +90,12 @@ public class StringCalculator {
 		return Integer.parseInt(number);
 	}
 	
+	
+	/**
+	 * This function gets the multiple delimiters from the expression
+	 * @param numbers - numbers string
+	 * @return
+	 */
 	private String getDelimiters(String numbers) {
 		StringBuilder sb = new StringBuilder();
 		String[] delimiters = numbers.substring(3,numbers.lastIndexOf("]")).split("\\]\\[");
@@ -116,7 +122,7 @@ public class StringCalculator {
 	
 	/**
 	 * This function calculates the sum of given numbers
-	 * @param numbers - String array of numbers
+	 * @param input - numbers, delimiter - to split from
 	 * @return - sum of numbers
 	 * @throws NegativesNotAllowed
 	 */
